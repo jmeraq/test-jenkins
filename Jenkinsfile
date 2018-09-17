@@ -20,7 +20,7 @@ pipeline {
     stages {
       stage("Determine Environment") {
         steps {          
-          sh "echo ${GIT_COMMITTER_EMAIL}"
+          sh "docker ps"
         }
       }
     }
