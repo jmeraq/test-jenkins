@@ -20,7 +20,7 @@ pipeline {
     stages {
       stage("Determine Environment") {
         steps {          
-          sh "sudo docker ps"
+          sh "docker ps"
         }
       }
     }
