@@ -6,16 +6,28 @@ pipeline {
         kubernetes {
           label 'jenkins-slave'
           containerTemplate {
-            name 'maven'
-            image 'maven:3.3.9-jdk-8-alpine'
+            name 'ubuntu'
+            image 'ubuntu:18.04'
+            ttyEnabled true
+            command 'cat'
+          }
+          
+          containerTemplate {
+            name 'debian'
+            image 'debian:9'
             ttyEnabled true
             command 'cat'
           }
         }
       }
       steps {
-        container('maven') {
-          sh 'mvn -version'
+        container('ubuntu') {
+          sh 'cat /etc/issue'
+        }
+        
+        
+        container('debian') {
+          sh 'cat /etc/issue'
         }
       }
     }
