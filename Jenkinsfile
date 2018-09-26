@@ -3,7 +3,7 @@ pipeline {
   stages { 
    stage('Inicio') {
 	   steps{
-	   	sh '/cat/issue'
+	   	sh 'cat /etc/issue'
 		sh 'mkdir host'
 		sh 'ls'
 	   }
@@ -21,7 +21,7 @@ pipeline {
 	}
       }
       steps {
-	sh '/cat/issue'
+	sh 'cat /etc/issue'
 	sh 'mkdir hostubuntu'
 	sh 'ls'
         container('ubuntu') {
@@ -44,7 +44,7 @@ pipeline {
 	    }
        }
        steps {
-	 sh '/cat/issue'
+	 sh 'cat /etc/issue'
 	 sh 'mkdir hostdebian'
 	 sh 'ls'
          container('debian') {
