@@ -6,37 +6,37 @@ pipeline {
 	    kubernetes {
 	      label 'ubuntu'
 	      containerTemplate {
-	        name 'ubuntu'
-	        image 'ubuntu:18.04'
-	        ttyEnabled true
-	        command 'cat'
-	      }
+		name 'ubuntu'
+		image 'ubuntu:18.04'
+		ttyEnabled true
+		command 'cat'
 	    }
-	  }
+	}
+      }
       steps {
-        container('maven') {
+        container('ubuntu') {
           sh 'cat /etc/issue'
         }
       }
     }
-  	stage('Debian Issue') {
-  	  agent{
+    stage('Debian Issue') {
+       agent{
 	    kubernetes {
 	      label 'debian'
 	      containerTemplate {
-	        name 'debian'
-	        image 'debian:9'
-	        ttyEnabled true
-	        command 'cat'
+		name 'debian'
+		image 'debian:9'
+		ttyEnabled true
+		command 'cat'
 	      }
 	    }
-	  }
-      steps {
-        container('debian') {
-          sh 'cat /etc/issue'
-        }
-      }
-  	}
+       }
+       steps {
+         container('debian') {
+           sh 'cat /etc/issue'
+         }
+       } 
+     }
   }
 }
 
