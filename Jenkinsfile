@@ -20,8 +20,9 @@ pipeline {
     stages {
       stage("Determine Environment") {
         steps {
+            sh "docker ps"
           sh "sleep 300"
-          sh "docker ps"
+          
         }
       }
     }
