@@ -33,7 +33,7 @@ pipeline {
 
           steps {
             sh "cat /etc/issue"
-            sh "docker ps"
+            sh "docker --version"
             sh "sleep 300"
           }
       }
