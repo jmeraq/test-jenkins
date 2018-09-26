@@ -22,7 +22,12 @@ pipeline {
           agent {
             kubernetes {
               label 'jenkins-slave'
-              defaultContainer 'jenkins-slave'
+              containerTemplate {
+                name 'jenkins-slave'
+                image 'latamautos/tools:jnlp-slave'
+                ttyEnabled true
+                command 'cat'
+              }
             }
           }
 
