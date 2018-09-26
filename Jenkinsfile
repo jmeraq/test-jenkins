@@ -1,36 +1,45 @@
 pipeline {
-  agent {
-    kubernetes {
-      label 'maven-container'
-      containerTemplate {
-        name 'maven'
-        image 'maven:3.3.9-jdk-8-alpine'
-        ttyEnabled true
-        command 'cat'
-      }
-    }
-  }
+  agent any
   environment {
-    CONTAINER_ENV_VAR = 'container-env-var-value'
+    
   }
   stages {
-    stage('Run maven') {
+    stage('Ubuntu Issue') {
+      agent{
+	    kubernetes {
+	      label 'ubuntu'
+	      containerTemplate {
+	        name 'ubuntu'
+	        image 'ubuntu:18.04'
+	        ttyEnabled true
+	        command 'cat'
+	      }
+	    }
+	  }
       steps {
-        sh 'set'
-        sh 'test -f /usr/bin/mvn' // checking backwards compatibility
-        sh "echo OUTSIDE_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}"
         container('maven') {
-          sh 'echo INSIDE_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}'
-          sh 'mvn -version'
+          sh 'cat /etc/issue'
         }
       }
     }
-	stage('Run maven with a different shell') {
-		steps {
-		  container(name: 'maven', shell: '/bin/bash') {
-			sh 'mvn -version'
-		  }
-		}
+  	stage('Debian Issue') {
+  	  agent{
+	    kubernetes {
+	      label 'debian'
+	      containerTemplate {
+	        name 'debian'
+	        image 'debian:9'
+	        ttyEnabled true
+	        command 'cat'
+	      }
+	    }
 	  }
+      steps {
+        container('debian') {
+          sh 'cat /etc/issue'
+        }
+      }
+  	}
   }
 }
+
