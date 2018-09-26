@@ -1,59 +1,39 @@
 pipeline {
-  agent any
-  stages { 
-   stage('Inicio') {
-	   steps{
-	   	sh 'cat /etc/issue'
-		sh 'mkdir host'
-		sh 'ls'
-	   }
-   }
-    stage('Ubuntu Issue') {
-      agent{
-	    kubernetes {
-	      label 'ubuntu'
-	      containerTemplate {
-		name 'ubuntu'
-		image 'ubuntu:18.04'
-		ttyEnabled true
-		command 'cat'
-	    }
-	}
-      }
+  agent {
+    kubernetes {
+      label 'mypod'
+      defaultContainer 'jnlp'
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: some-label-value
+spec:
+  containers:
+  - name: maven
+    image: maven:alpine
+    command:
+    - cat
+    tty: true
+  - name: busybox
+    image: busybox
+    command:
+    - cat
+    tty: true
+"""
+    }
+  }
+  stages {
+    stage('Run maven') {
       steps {
-	sh 'cat /etc/issue'
-	sh 'mkdir hostubuntu'
-	sh 'ls'
-        container('ubuntu') {
-	  sh 'mkdir ubuntuos'
-	  sh 'ls'
-          sh 'cat /etc/issue'
+        container('maven') {
+          sh 'mvn -version'
+        }
+        container('busybox') {
+          sh '/bin/busybox'
         }
       }
     }
-    stage('Debian Issue') {
-       agent{
-	    kubernetes {
-	      label 'debian'
-	      containerTemplate {
-		name 'debian'
-		image 'debian:9'
-		ttyEnabled true
-		command 'cat'
-	      }
-	    }
-       }
-       steps {
-	 sh 'cat /etc/issue'
-	 sh 'mkdir hostdebian'
-	 sh 'ls'
-         container('debian') {
-	   sh 'mkdir debianos'
-           sh 'ls'
-           sh 'cat /etc/issue'
-         }
-       } 
-     }
   }
 }
-
