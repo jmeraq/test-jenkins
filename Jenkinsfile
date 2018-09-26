@@ -20,6 +20,7 @@ pipeline {
     stages {
       stage("Determine Environment") {
         steps {
+            sh "cat /etc/issue"
             sh "docker ps"
           sh "sleep 300"
           
