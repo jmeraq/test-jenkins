@@ -3,7 +3,7 @@ pipeline {
         kubernetes {
           label 'jenkins-slave'
           containerTemplates {
-            container{
+            containerTemplate{
               name 'ubuntu'
               image 'ubuntu:18.04'
               ttyEnabled true
