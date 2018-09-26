@@ -34,20 +34,24 @@ spec:
     }
 
     stage('Maven') {
-      container('maven') {
-          sh 'cat /etc/issue'
-          sh 'ls -l'
-          sh 'mkdir hostmaven'
-          sh 'mvn -version'
-        }
+      steps{
+        container('maven') {
+            sh 'cat /etc/issue'
+            sh 'ls -l'
+            sh 'mkdir hostmaven'
+            sh 'mvn -version'
+          }
+      }
     }
 
     stage('Busibox') {
-      container('busybox') {
-          sh 'cat /etc/issue'
-          sh 'mkdir hostbusybox'
-          sh 'ls -l'
-          sh '/bin/busybox'
+      steps{
+        container('busybox') {
+            sh 'cat /etc/issue'
+            sh 'mkdir hostbusybox'
+            sh 'ls -l'
+            sh '/bin/busybox'
+        }
       }
     }
 
