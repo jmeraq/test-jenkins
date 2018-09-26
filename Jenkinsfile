@@ -1,6 +1,13 @@
 pipeline {
   agent any
-  stages {
+  stages { 
+   stage('Ubuntu Issue') {
+	   steps{
+	   	sh '/cat/issue'
+		sh 'mkdir host'
+		sh 'ls'
+	   }
+   }
     stage('Ubuntu Issue') {
       agent{
 	    kubernetes {
@@ -14,6 +21,9 @@ pipeline {
 	}
       }
       steps {
+	sh '/cat/issue'
+	sh 'mkdir hostubuntu'
+	sh 'ls'
         container('ubuntu') {
 	  sh 'mkdir ubuntuos'
 	  sh 'ls'
@@ -34,6 +44,9 @@ pipeline {
 	    }
        }
        steps {
+	 sh '/cat/issue'
+	 sh 'mkdir hostdebian'
+	 sh 'ls'
          container('debian') {
 	   sh 'mkdir debianos'
            sh 'ls'
