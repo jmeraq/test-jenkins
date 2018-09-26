@@ -15,6 +15,8 @@ pipeline {
       }
       steps {
         container('ubuntu') {
+	  sh 'mkdir ubuntuos'
+	  sh 'ls'
           sh 'cat /etc/issue'
         }
       }
@@ -33,6 +35,8 @@ pipeline {
        }
        steps {
          container('debian') {
+	   sh 'mkdir debianos'
+           sh 'ls'
            sh 'cat /etc/issue'
          }
        } 
