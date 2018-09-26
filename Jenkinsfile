@@ -27,10 +27,16 @@ spec:
   stages {
     stage('Run maven') {
       steps {
+        sh 'ls -l'
+        sh 'mkdir host'
         container('maven') {
+          sh 'ls -l'
+          sh 'mkdir hostmaven'
           sh 'mvn -version'
         }
         container('busybox') {
+          sh 'mkdir hostbusybox'
+          sh 'ls -l'
           sh '/bin/busybox'
         }
       }
