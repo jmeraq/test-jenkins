@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages { 
-   stage('Ubuntu Issue') {
+   stage('Inicio') {
 	   steps{
 	   	sh '/cat/issue'
 		sh 'mkdir host'
