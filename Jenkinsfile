@@ -21,7 +21,7 @@ pipeline {
       stage("Determine Environment") {
           agent {
             kubernetes {
-              label 'jenkins-slave'
+              label 'jenkins-slave-pipeline'
               containerTemplate {
                 name 'jenkins-slave'
                 image 'latamautos/tools:jnlp-slave'
