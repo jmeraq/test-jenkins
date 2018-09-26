@@ -1,8 +1,5 @@
 pipeline {
-  agent any
-  stages {
-    stage('Run maven') {
-      agent {
+  agent {
         kubernetes {
           label 'jenkins-slave'
           containerTemplate {
@@ -11,22 +8,13 @@ pipeline {
             ttyEnabled true
             command 'cat'
           }
-          
-          containerTemplate {
-            name 'debian'
-            image 'debian:9'
-            ttyEnabled true
-            command 'cat'
-          }
         }
       }
+  stages {
+    stage('Run ubuntu') {
+      
       steps {
         container('ubuntu') {
-          sh 'cat /etc/issue'
-        }
-        
-        
-        container('debian') {
           sh 'cat /etc/issue'
         }
       }
