@@ -19,12 +19,11 @@ pipeline {
 
     stages {
       stage("Determine Environment") {
-        steps {
+          container('jenkins-slave') {
             sh "cat /etc/issue"
             sh "docker ps"
-          sh "sleep 300"
-          
-        }
+            sh "sleep 300"
+          }
       }
     }
 
