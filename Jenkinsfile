@@ -27,18 +27,18 @@ spec:
   stages {
     stage('Inicio') {
       steps {
-        sh 'cat /etc/issue'
-        sh 'ls -l'
         sh 'mkdir host'
+        sh 'ls -l'
+        sh 'cat /etc/issue'
       }
     }
 
     stage('Maven') {
       steps{
         container('maven') {
+            sh 'mkdir hostmaven'
             sh 'cat /etc/issue'
             sh 'ls -l'
-            sh 'mkdir hostmaven'
             sh 'mvn -version'
           }
       }
@@ -47,7 +47,6 @@ spec:
     stage('Busibox') {
       steps{
         container('busybox') {
-            sh 'cat /etc/issue'
             sh 'mkdir hostbusybox'
             sh 'ls -l'
             sh '/bin/busybox'
