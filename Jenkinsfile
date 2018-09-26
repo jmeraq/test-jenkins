@@ -19,7 +19,14 @@ pipeline {
 
     stages {
       stage("Determine Environment") {
-          container('jenkins-slave') {
+          agent {
+            kubernetes {
+              label 'jenkins-slave'
+              defaultContainer 'jenkins-slave'
+            }
+          }
+
+          steps {
             sh "cat /etc/issue"
             sh "docker ps"
             sh "sleep 300"
