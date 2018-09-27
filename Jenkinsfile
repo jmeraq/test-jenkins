@@ -2,6 +2,7 @@ pipeline {
     agent {
         kubernetes {
             label 'latamautos-tools'
+            defaultContainer 'jnlp'
             containerTemplate {
                 name 'tools'
                 image 'latamautos/tools'
