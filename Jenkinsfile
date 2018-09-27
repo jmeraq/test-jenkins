@@ -8,7 +8,6 @@ pipeline {
                 image 'latamautos/tools'
                 ttyEnabled true
                 command 'cat'
-                workingDir 'var/lib/jenkins'
             }
         }
     }
