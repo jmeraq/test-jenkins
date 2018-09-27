@@ -9,7 +9,7 @@ pipeline {
                     workingDir '/home/jenkins'
                     ttyEnabled true
                     command 'cat'
-                    args '--group-add root --group-add docker --group-add 10000'
+                    args ''
             }
         }
     }
