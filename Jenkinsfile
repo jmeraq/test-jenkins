@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh 'mkdir host'
                 container('tools') {
-                    sh 'mkdir hostsbt'
+                    sh 'mkdir hostdocker'
                     sh 'docker ps'
                     sh 'ls -l'
                 }
