@@ -5,12 +5,12 @@ pipeline {
             label 'latamautos-tools'
             defaultContainer 'jnlp'
             containerTemplate{
-                    name 'tools'
-                    image 'latamautos/tools:kubernetes'
-                    workingDir '/home/jenkins'
-                    ttyEnabled true
-                    command 'cat'
-                    args ''
+                name 'tools'
+                image 'latamautos/tools:kubernetes'
+                workingDir '/home/jenkins'
+                ttyEnabled true
+                command 'cat'
+                args ''
             }
         }
     }
@@ -20,15 +20,18 @@ pipeline {
                 sh 'mkdir host'
                 container('tools') {
                     sh 'mkdir hostsbt'
-                    sh 'ls -l'
                     sh 'docker ps'
+                    sh 'ls -l'
                 }
             }
         }
-        stage('Run Node') {
+        stage('Run Node and npm') {
             steps {
                 container('tools') {
-                    sh 'node --version'
+                    sh 'mkdir hostnodejs'
+                    sh 'nodejs --version'
+                    sh 'npm --version'
+                    sh 'ls -l'
                 }
             }
         }
@@ -36,7 +39,39 @@ pipeline {
         stage('Run Git') {
             steps {
                 container('tools') {
+                    sh 'mkdir hostgit'
                     sh 'git --version'
+                    sh 'ls -l'
+                }
+            }
+        }
+        
+        stage('Run SBT') {
+            steps {
+                container('tools') {
+                    sh 'mkdir hostsbt'
+                    sh 'sbt --version'
+                    sh 'ls -l'
+                }
+            }
+        }
+        
+        stage('Run HHVM') {
+            steps {
+                container('tools') {
+                    sh 'mkdir hosthhvm'
+                    sh 'hhvm --version'
+                    sh 'ls -l'
+                }
+            }
+        }
+        
+        stage('Run Java') {
+            steps {
+                container('tools') {
+                    sh 'mkdir hostjava'
+                    sh 'java --version'
+                    sh 'ls -l'
                 }
             }
         }
