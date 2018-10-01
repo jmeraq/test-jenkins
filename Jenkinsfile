@@ -12,5 +12,23 @@ pipeline {
                 sh "git rev-parse --abbrev-ref HEAD"
             }
         }
+        
+        stage("testprod"){
+            when {
+                branch 'master'
+            }
+            steps{
+                sh "echo 'Is Master'"
+            }
+        }
+        
+        stage("testdev"){
+            when {
+                branch 'develop'
+            }
+            steps{
+                sh "echo 'Is Develop'"
+            }
+        }
     }
 }
