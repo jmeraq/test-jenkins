@@ -8,7 +8,6 @@ pipeline {
                 name 'tools'
                 image 'latamautos/tools:kubernetes'
                 workingDir '/home/jenkins'
-                volume '/var/run/docker.sock:/var/run/docker.sock'
                 ttyEnabled true
                 command 'cat'
                 args ''
