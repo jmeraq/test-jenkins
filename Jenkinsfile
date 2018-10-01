@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             stages {
-               stage('Demo) {
+               stage('Demo') {
                    when {
                       branch 'master'
                    }
