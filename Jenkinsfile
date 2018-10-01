@@ -1,7 +1,10 @@
 pipeline {
     agent none
     enviroment{
-        GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+        GIT_BRANCH = """${sh(
+                        returnStdout: true, 
+                        script: 'git rev-parse --abbrev-ref HEAD').trim()
+                     }"""
     }
     stages {
         stage('build') {
