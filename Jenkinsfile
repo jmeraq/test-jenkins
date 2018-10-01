@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment{
-        GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD')
+        GIT_BRANCH = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD")
         
     }
     stages {
