@@ -3,8 +3,8 @@ pipeline {
     environment{
         GIT_BRANCH = """${sh(
                         returnStdout: true, 
-                        script: 'git rev-parse --abbrev-ref HEAD').trim()
-                     }"""
+                        script: 'git rev-parse --abbrev-ref HEAD'
+                    )}"""
     }
     stages {
         stage('build') {
