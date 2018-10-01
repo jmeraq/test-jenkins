@@ -15,7 +15,9 @@ pipeline {
         
         stage("testprod"){
             when {
-                branch 'master'
+                expression {
+                    return sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == "master"
+                }
             }
             steps{
                 sh "echo 'Is Master'"
@@ -24,7 +26,9 @@ pipeline {
         
         stage("testdev"){
             when {
-                branch 'develop'
+                expression {
+                    return sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == "develop"
+                }
             }
             steps{
                 sh "echo 'Is Develop'"
