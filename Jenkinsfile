@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    enviroment{
+        GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
     stages {
         stage('build') {
             stages {
@@ -8,7 +11,7 @@ pipeline {
                       branch 'master'
                    }
                    steps {
-                       echo "Is Master"
+                       sh "echo ${GIT_BRANCH}"
                    }
                }
                stage('Production') {
@@ -16,7 +19,7 @@ pipeline {
                       branch 'develop'
                    }
                    steps {
-                       echo "Is Develop"
+                       sh "echo ${GIT_BRANCH}"
                    }
                }
             }
