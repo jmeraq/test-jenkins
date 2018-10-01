@@ -1,6 +1,7 @@
 //cambio en develop
 pipeline {
     agent {
+        label 'jenkins-slave'
         kubernetes {
             label 'latamautos-tools'
             defaultContainer 'jnlp'
