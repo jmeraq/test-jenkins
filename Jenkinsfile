@@ -8,7 +8,7 @@ pipeline {
     stages{
         stage("test"){
             steps{
-                sh "echo ${GIT_BRANCH}"
+                sh "echo '${GIT_BRANCH}'"
             }
         }
     }
