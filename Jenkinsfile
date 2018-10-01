@@ -9,6 +9,7 @@ pipeline {
         stage("test"){
             steps{
                 sh "echo '${GIT_BRANCH}'"
+                sh "git rev-parse --abbrev-ref HEAD"
             }
         }
     }
