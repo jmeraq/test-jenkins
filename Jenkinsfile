@@ -27,7 +27,7 @@ pipeline {
         stage("testdev"){
             when {
                 expression {
-                    return sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == "develop"
+                    return sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == "HEAD"
                 }
             }
             steps{
