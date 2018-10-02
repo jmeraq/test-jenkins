@@ -2,7 +2,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'master'
+            label 'kubernetes'
             defaultContainer 'jnlp'
             containerTemplate{
                 name 'tools'
