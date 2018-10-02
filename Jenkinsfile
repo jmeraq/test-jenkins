@@ -6,6 +6,7 @@ pipeline {
             defaultContainer 'jnlp'
             containerTemplate{
                 name 'tools'
+                workingDir '/var/lib/jenkins'
                 image 'latamautos/tools:kubernetes'
                 ttyEnabled true
                 command 'cat'
