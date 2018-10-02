@@ -7,7 +7,6 @@ pipeline {
             containerTemplate{
                 name 'tools'
                 image 'latamautos/tools:kubernetes'
-                workingDir '/home/jenkins'
                 ttyEnabled true
                 command 'cat'
                 args ''
