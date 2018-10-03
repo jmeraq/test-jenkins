@@ -15,6 +15,25 @@ pipeline {
         }
     }
     stages {
+        stage("Build"){
+            steps {
+                container('tools'){
+                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
+                                                 keyFileVariable: '', \
+                                                 passphraseVariable: '', \
+                                                 usernameVariable: '')]) {
+                        sh '''
+                            git --version
+                            git remote set-url origin git@bitbucket.org:latamautos/test-jenkins.git
+                            git config --global user.email "jenkins@test.com"
+                            git config --global user.name "Jenkins"
+                            git tag -a "tag-test" -m "tag-test"
+                            git push origin "tag-test"
+                        '''
+                    }  
+                }        
+            }
+        }
         stage('Run Docker') {
             steps {
                 sh 'mkdir host'
