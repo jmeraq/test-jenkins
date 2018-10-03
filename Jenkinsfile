@@ -17,6 +17,21 @@ pipeline {
     stages {
         stage("Build"){
             steps {
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
+                                                 keyFileVariable: '', \
+                                                 passphraseVariable: '', \
+                                                 usernameVariable: '')]) {
+                        sh '''
+                            ls -la
+                            git status
+                            git --version
+                            git remote set-url origin git@bitbucket.org:latamautos/test-jenkins.git
+                            git config --global user.email "jenkins@test.com"
+                            git config --global user.name "Jenkins"
+                            git tag -a "tag-test" -m "tag-test"
+                            git push origin "tag-test"
+                        '''
+                    }  
                 container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: '', \
