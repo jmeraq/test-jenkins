@@ -18,7 +18,7 @@ pipeline {
         stage("Build"){
             steps {
                 script{
-                    sshagent(['0d71b302-dbda-4293-b19d-798f267d6133']) {
+                    sshagent(['jenkins']) {
                         sh '''
                                 ls -la
                                 git status
