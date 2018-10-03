@@ -28,8 +28,7 @@ pipeline {
                                 git config --global user.name "Jenkins"
                                 git tag -a "tag-test" -m "tag-test"
                                 git push origin "tag-test"
-                            '''
-                        }
+                          '''
                     }  
                 }
                 container('tools'){
