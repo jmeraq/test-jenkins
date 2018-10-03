@@ -25,7 +25,7 @@ pipeline {
                             ls -la
                             git status
                             git --version
-                            git remote set-url origin git@bitbucket.org:latamautos/test-jenkins.git
+                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
                             git config --global user.name "Jenkins"
                             git tag -a "tag-test" -m "tag-test"
@@ -41,7 +41,7 @@ pipeline {
                             ls -la
                             git status
                             git --version
-                            git remote set-url origin git@bitbucket.org:latamautos/test-jenkins.git
+                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
                             git config --global user.name "Jenkins"
                             git tag -a "tag-test" -m "tag-test"
