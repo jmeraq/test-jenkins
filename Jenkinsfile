@@ -17,21 +17,18 @@ pipeline {
     stages {
         stage("Build"){
             steps {
-                script{
-                    sshagent(['jenkins']) {
-                        sh '''
-                                ls -la
-                                git status
-                                git --version
-                                git remote set-url origin git@github.com:jmeraq/test-jenkins.git
-                                git config --global user.email "jenkins@test.com"
-                                git config --global user.name "Jenkins"
-                                git tag -a "tag-test" -m "tag-test"
-                                git push origin "tag-test"
-                          '''
-                    }  
+                script {
+                    sshagent(['jenkins_slave']) {
+                        sh """
+                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
+                            git config --global user.email "jenkins@test.com"
+                            git config --global user.name "Jenkins"
+                            git tag -a "tag-test" -m "tag-test"
+                            git push origin "tag-test"
+                         """
+                    }
                 }
-                container('tools'){
+                /*container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: '', \
                                                  passphraseVariable: '', \
@@ -47,7 +44,7 @@ pipeline {
                             git push origin "tag-test"
                         '''
                     }  
-                }        
+                }  */      
             }
         }
         stage('Run Docker') {
