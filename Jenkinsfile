@@ -43,7 +43,8 @@ pipeline {
                         git push origin "tag-test"
                     '''
                 }  
-            }  */      
+            }  */ 
+            }
         }
         stage('Run Docker') {
             steps {
