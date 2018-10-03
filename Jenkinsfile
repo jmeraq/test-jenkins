@@ -23,6 +23,7 @@ pipeline {
                                                  passphraseVariable: '', \
                                                  usernameVariable: '')]) {
                         sh '''
+                            ssh --version
                             git --version
                             git remote set-url origin git@bitbucket.org:latamautos/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
