@@ -17,21 +17,21 @@ pipeline {
     stages {
         stage("Build"){
             steps {
-                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
-                                                 keyFileVariable: '', \
-                                                 passphraseVariable: '', \
-                                                 usernameVariable: '')]) {
+                script{
+                    sshagent(['0d71b302-dbda-4293-b19d-798f267d6133']) {
                         sh '''
-                            ls -la
-                            git status
-                            git --version
-                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
-                            git config --global user.email "jenkins@test.com"
-                            git config --global user.name "Jenkins"
-                            git tag -a "tag-test" -m "tag-test"
-                            git push origin "tag-test"
-                        '''
+                                ls -la
+                                git status
+                                git --version
+                                git remote set-url origin git@github.com:jmeraq/test-jenkins.git
+                                git config --global user.email "jenkins@test.com"
+                                git config --global user.name "Jenkins"
+                                git tag -a "tag-test" -m "tag-test"
+                                git push origin "tag-test"
+                            '''
+                        }
                     }  
+                }
                 container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: '', \
