@@ -24,7 +24,7 @@ pipeline {
                             git config --global user.email "jenkins@test.com"
                             git config --global user.name "Jenkins"
                             git tag -a "tag-test" -m "tag-test"
-                            git push origin "tag-test"
+                            //git push origin "tag-test"
                          """
                     }
                 }
