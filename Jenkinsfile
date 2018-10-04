@@ -50,7 +50,6 @@ pipeline {
                             git --version
                             ssh-keyscan github.com >> ~/.ssh/known_hosts
                             cat ~/.ssh/known_hosts
-                            echo $jenkins_slave >> ~/.ssh/id_rsa
                             ls -la ~/.ssh/
                             sleep 500
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
