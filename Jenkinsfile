@@ -48,6 +48,11 @@ pipeline {
                             ls -la .git/
                             git status
                             git --version
+                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
+                            git config --global user.email "jenkins@test.com"
+                            git config --global user.name "Jenkins"
+                            git tag -a "tag-test2" -m "tag-test2"
+                            git push origin "tag-test2"
                         '''
                     }  
                 }
