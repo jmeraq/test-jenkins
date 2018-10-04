@@ -35,7 +35,7 @@ pipeline {
                             '''
                         } 
                  }*/
-                container('jnlp'){
+                container('tools'){
                     script {
                         sshagent(['jenkins_slave']) {
                     //withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', keyFileVariable: 'jenkins_slave', passphraseVariable: '', usernameVariable: 'root')]) {
@@ -51,7 +51,6 @@ pipeline {
                             cat ~/.ssh/known_hosts
                             cat $jenkins_slave
                             ls -la ~/.ssh/
-                            cat $jenkins_slave
                             sleep 500
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
