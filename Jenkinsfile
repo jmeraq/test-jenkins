@@ -42,9 +42,9 @@ pipeline {
                                                  usernameVariable: 'root')]) {
                         sh '''
                             ls -la
-                            cat ls -la .git/
+                            ls -la .git/
                             cat /etc/issue
-                            cat ls -la /root/
+                            ls -la /root/
                             git status
                             git --version
                             echo "${jenkins_slave}"
