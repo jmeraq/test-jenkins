@@ -19,12 +19,13 @@ pipeline {
             steps {
                 container("jnlp"){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
-                                                     keyFileVariable: '', \
+                                                     keyFileVariable: 'jenkins_slave', \
                                                      passphraseVariable: '', \
                                                      usernameVariable: '')]) {
                             sh '''
                                 ls -la
                                 cat /etc/issue
+                                cat .ss
                                 git status
                                 git --version
                                 git remote set-url origin git@github.com:jmeraq/test-jenkins.git
