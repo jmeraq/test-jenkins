@@ -49,7 +49,8 @@ pipeline {
                             ls -la .git/
                             git status
                             git --version
-                            rm ~/.ssh/known_hosts
+                            rm -rf ~/.ssh/
+                            mkdir ~/.ssh/
                             ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
                             ssh-keyscan github.com >> ~/.ssh/known_hosts
                             cat ~/.ssh/known_hosts
