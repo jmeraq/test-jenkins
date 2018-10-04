@@ -17,7 +17,7 @@ pipeline {
     stages{
         stage("Build"){
             steps {
-                container("jnlp"){
+                /*container("jnlp"){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                      keyFileVariable: 'jenkins_slave', \
                                                      passphraseVariable: '', \
@@ -34,7 +34,7 @@ pipeline {
                                 git push origin "tag-test2"
                             '''
                         } 
-                 }
+                 }*/
                 container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: 'jenkins_slave', \
@@ -45,6 +45,7 @@ pipeline {
                             cat /etc/issue
                             git status
                             git --version
+                            echo "${jenkins_slave}"
                         '''
                     }  
                 }
