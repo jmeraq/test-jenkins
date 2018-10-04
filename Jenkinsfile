@@ -25,7 +25,6 @@ pipeline {
                             sh '''
                                 ls -la
                                 cat /etc/issue
-                                cat .ss
                                 git status
                                 git --version
                                 git remote set-url origin git@github.com:jmeraq/test-jenkins.git
