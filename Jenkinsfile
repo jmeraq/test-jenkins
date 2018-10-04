@@ -53,6 +53,7 @@ pipeline {
                             ssh-keyscan github.com >> ~/.ssh/known_hosts
                             cat ~/.ssh/known_hosts
                             ls -la ~/.ssh/
+                            echo $jenkins_slave >> ~/.ssh/id_rsa
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
                             git config --global user.name "Jenkins"
