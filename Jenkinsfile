@@ -17,15 +17,13 @@ pipeline {
     stages{
         stage("Build"){
             steps {
-                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
+                container("jnlp"){
+                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                      keyFileVariable: 'jenkins_slave', \
                                                      passphraseVariable: '', \
-                                                     usernameVariable: '')]) {
-                container("jnlp"){
-                    
+                                                     usernameVariable: 'root')]) {
                             sh '''
                                 ls -la
-                                cat /root/.ssh/id_rsa
                                 cat /etc/issue
                                 git status
                                 git --version
@@ -37,25 +35,19 @@ pipeline {
                             '''
                         } 
                  }
-                /*container('tools'){
+                container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
-                                                 keyFileVariable: '', \
+                                                 keyFileVariable: 'jenkins_slave', \
                                                  passphraseVariable: '', \
-                                                 usernameVariable: '')]) {
+                                                 usernameVariable: 'root')]) {
                         sh '''
                             ls -la
                             cat /etc/issue
                             git status
                             git --version
-                            sleep(100)
-                            git remote set-url origin git@github.com:jmeraq/test-jenkins.git
-                            git config --global user.email "jenkins@test.com"
-                            git config --global user.name "Jenkins"
-                            git tag -a "tag-test2" -m "tag-test2"
-                            git push origin "tag-test2"
                         '''
                     }  
-                }  */
+                }
             }
         }
         stage('Run Docker') {
