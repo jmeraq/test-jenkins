@@ -35,11 +35,10 @@ pipeline {
                             '''
                         } 
                  }*/
-                container('tools'){
-                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
-                                                 keyFileVariable: 'jenkins_slave', \
-                                                 passphraseVariable: '', \
-                                                 usernameVariable: 'root')]) {
+                container('jnlp'){
+                    script {
+                        sshagent(['jenkins_slave']) {
+                    //withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', keyFileVariable: 'jenkins_slave', passphraseVariable: '', usernameVariable: 'root')]) {
                         sh '''
                             cat /etc/issue
                             hostname
@@ -52,7 +51,7 @@ pipeline {
                             cat ~/.ssh/known_hosts
                             cat $jenkins_slave
                             ls -la ~/.ssh/
-                            cat $jenkins_slave >> ~/.ssh/id_rsa
+                            cat $jenkins_slave
                             sleep 500
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
@@ -60,7 +59,7 @@ pipeline {
                             git tag -a "tag-test2" -m "tag-test2"
                             git push origin "tag-test2"
                         '''
-                    }  
+                        }}  
                 }
             }
         }
