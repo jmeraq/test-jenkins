@@ -41,6 +41,7 @@ pipeline {
                                                  passphraseVariable: '', \
                                                  usernameVariable: 'root')]) {
                         sh '''
+                            ssh-add $jenkins_slave
                             ls -la
                             ls -la .git/
                             cat /etc/issue
