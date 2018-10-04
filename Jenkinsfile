@@ -41,6 +41,7 @@ pipeline {
                                                  passphraseVariable: '', \
                                                  usernameVariable: 'root')]) {
                         sh '''
+                            sleep 500
                             cat /etc/issue
                             hostname
                             which ssh
