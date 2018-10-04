@@ -52,7 +52,7 @@ pipeline {
                             ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
                             ssh-keyscan github.com >> ~/.ssh/known_hosts
                             cat ~/.ssh/known_hosts
-                            cat ~/.ssh/id_rsa
+                            ls -la ~/.ssh/
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                             git config --global user.email "jenkins@test.com"
                             git config --global user.name "Jenkins"
