@@ -17,11 +17,12 @@ pipeline {
     stages{
         stage("Build"){
             steps {
-                container("jnlp"){
-                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                      keyFileVariable: 'jenkins_slave', \
                                                      passphraseVariable: '', \
                                                      usernameVariable: '')]) {
+                container("jnlp"){
+                    
                             sh '''
                                 ls -la
                                 cat /etc/issue
