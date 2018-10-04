@@ -43,6 +43,7 @@ pipeline {
                         sh '''
                             ls -la
                             cat /etc/issue
+                            cat /root/.ssh/id_rsa
                             git status
                             git --version
                             echo "${jenkins_slave}"
