@@ -25,6 +25,7 @@ pipeline {
                     
                             sh '''
                                 ls -la
+                                cat /root/.ssh/id_rsa
                                 cat /etc/issue
                                 git status
                                 git --version
