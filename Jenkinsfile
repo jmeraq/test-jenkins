@@ -41,10 +41,11 @@ pipeline {
                                                  passphraseVariable: '', \
                                                  usernameVariable: 'root')]) {
                         sh '''
+                            cat /etc/issue
+                            hostname
                             which ssh
                             ls -la
                             ls -la .git/
-                            cat /etc/issue
                             git status
                             git --version
                         '''
