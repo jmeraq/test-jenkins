@@ -35,20 +35,18 @@ pipeline {
                             '''
                         } 
                  }*/
-                container('jnlp'){
+                container('tools'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: 'jenkins_slave', \
                                                  passphraseVariable: '', \
                                                  usernameVariable: 'root')]) {
                         sh '''
-                            ssh-add $jenkins_slave
+                            which ssh
                             ls -la
                             ls -la .git/
                             cat /etc/issue
-                            ls -la /root/
                             git status
                             git --version
-                            echo "${jenkins_slave}"
                         '''
                     }  
                 }
