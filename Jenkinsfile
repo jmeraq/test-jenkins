@@ -27,6 +27,7 @@ pipeline {
                                 cat /etc/issue
                                 git status
                                 git --version
+                                ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
                                 git remote set-url origin git@github.com:jmeraq/test-jenkins.git
                                 git config --global user.email "jenkins@test.com"
                                 git config --global user.name "Jenkins"
