@@ -50,6 +50,7 @@ pipeline {
                             git status
                             git --version
                             ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
+                            ssh-keyscan github.com >> ~/.ssh/known_hosts
                             cat ~/.ssh/known_hosts
                             cat ~/.ssh/id_rsa
                             git remote set-url origin git@github.com:jmeraq/test-jenkins.git
