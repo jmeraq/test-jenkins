@@ -35,7 +35,7 @@ pipeline {
                             '''
                         } 
                  }*/
-                container('tools'){
+                container('jnlp'){
                     withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins_slave', \
                                                  keyFileVariable: 'jenkins_slave', \
                                                  passphraseVariable: '', \
